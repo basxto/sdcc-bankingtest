@@ -1,4 +1,4 @@
-#pragma codeseg BANK1
+#pragma bank 1
 
 const char rom_var = 0xAB;
 
