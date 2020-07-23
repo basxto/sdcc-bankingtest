@@ -1,5 +1,7 @@
 #define UINT8 unsigned char
 
+extern char rom2_function2() __banked;
+
 UINT8 my_function(UINT8 a, UINT8 b, UINT8 c, UINT8 d){
     d -= a;
     d -= b*8;
@@ -14,4 +16,5 @@ UINT8 my_function(UINT8 a, UINT8 b, UINT8 c, UINT8 d){
 void main(){
     UINT8 some_var = 5;
     some_var += my_function(0, 1, 0, 0xff);
+    rom2_function2();
 }

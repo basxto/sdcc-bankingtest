@@ -9,7 +9,7 @@ build: romgb.gb
 romgb.gb: romihx.ihx
 	$(MAKEBIN) -Z $^ $@
 
-romihx.ihx: main.rel rom.rel rom2.rel rom3.rel ram.rel
+romihx.ihx: main.rel rom.rel rom2.rel rom3.rel ram.rel trampoline.rel
 	$(SDCC) -mgbz80 --data-loc 0xc0a0  -o $@ $^
 
 # does not work
@@ -22,6 +22,9 @@ rom2.rel: rom2.c
 %.rel: 	%.c
 	$(SDCC) -mgbz80 -c -o $@ $^
 
+%.rel: 	%.s
+	$(SDASGB) -plosgff -o $@ $^
+
 .PHONY:
 clean:
-	rm -f *.ihx *.lst *.rel *.sym *.asm *.s *.lk *.map *.noi
+	rm -f *.ihx *.lst *.rel *.sym *.asm *.lk *.map *.noi

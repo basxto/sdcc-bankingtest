@@ -1,5 +1,4 @@
 *.asm
-*.s
 *.gb
 *.ihx
 *.lst
