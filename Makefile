@@ -1,13 +1,14 @@
-SDCPP?=sdcpp
-SDCC?=sdcc
-SDASGB?=sdasgb
-MAKEBIN?=makebin
+SDCCBIN?=
+SDCPP?=$(SDCCBIN)sdcpp
+SDCC?=$(SDCCBIN)sdcc
+SDASGB?=$(SDCCBIN)sdasgb
+MAKEBIN?=$(SDCCBIN)makebin
 
 .PHONY:
 build: romgb.gb
 
 romgb.gb: romihx.ihx
-	$(MAKEBIN) -Z $^ $@
+	$(MAKEBIN) -yt 0x03 -yo 4 -ya 1 -Z $^ $@
 
 romihx.ihx: main.rel rom.rel rom2.rel rom3.rel ram.rel trampoline.rel
 	$(SDCC) -mgbz80 --data-loc 0xc0a0  -o $@ $^
